@@ -70,6 +70,7 @@ JOIN grades g ON s.id = g.student_id
 JOIN subjects sub ON g.subject_id = sub.id
 WHERE sub.name = 'Базы данных';
 ```
+<img width="1204" height="1254" alt="image" src="https://github.com/user-attachments/assets/3bda5966-7c97-4322-a7f1-4118a1b5f316" />
 
 **2. Вывести список предметов, которые преподает конкретный преподаватель**
 
@@ -80,6 +81,8 @@ JOIN grades g ON sub.id = g.subject_id
 JOIN teachers t ON g.teacher_id = t.id
 WHERE t.full_name = 'Дмитрий Кутейников';
 ```
+<img width="1198" height="1264" alt="image" src="https://github.com/user-attachments/assets/0a45e719-9684-43ba-9a42-705ee0fde76e" />
+
 
 **3. Вывести средний балл студента по всем предметам**
 
@@ -89,6 +92,8 @@ FROM students s
 JOIN grades g ON s.id = g.student_id
 GROUP BY s.id, s.full_name;
 ```
+<img width="1206" height="1246" alt="image" src="https://github.com/user-attachments/assets/570b45b2-0eea-4956-b1d6-6c0022c68a19" />
+
 
 **4. Вывести рейтинг преподавателей по средней оценке студентов**
 
@@ -99,6 +104,8 @@ JOIN grades g ON t.id = g.teacher_id
 GROUP BY t.id, t.full_name
 ORDER BY rating DESC;
 ```
+<img width="1200" height="1244" alt="image" src="https://github.com/user-attachments/assets/1050d4df-a240-4c21-a93c-4cb221e33edb" />
+
 
 **5. Список преподавателей, которые преподавали более 3 предметов за последний год**
 
@@ -110,6 +117,9 @@ WHERE g.grade_date > DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
 GROUP BY t.id, t.full_name
 HAVING subjects_count > 3;
 ```
+
+<img width="1200" height="1246" alt="image" src="https://github.com/user-attachments/assets/d3bb1a89-9c6b-4515-bb59-4aa5f27ea7e4" />
+
 
 **6. Студенты: Отлично (\>7) по IT, но Неуд (\<6) по Праву**
 (Условие адаптировано под 10-балльную систему)
@@ -126,6 +136,9 @@ HAVING
     AVG(CASE WHEN sub.category = 'Law' THEN g.score END) < 6;
 ```
 
+<img width="1200" height="1244" alt="image" src="https://github.com/user-attachments/assets/afcd7145-d6ae-49c4-b71d-bf81cba190f1" />
+
+
 **7. Предметы, по которым больше всего неудов (\<4) в текущем семестре**
 
 ```sql
@@ -137,6 +150,9 @@ GROUP BY sub.id, sub.name
 ORDER BY bad_grades DESC
 LIMIT 1;
 ```
+
+<img width="1206" height="1248" alt="image" src="https://github.com/user-attachments/assets/368fa205-0bc6-4413-acf6-3593f4a5c29d" />
+
 
 **8. Студенты, получившие высший балл (10) по всем экзаменам**
 
@@ -159,6 +175,9 @@ GROUP BY year
 ORDER BY year;
 ```
 
+<img width="1200" height="1250" alt="image" src="https://github.com/user-attachments/assets/ed5c30e5-c1e4-4777-8f9a-79ca01834b5c" />
+
+
 **10. Сравнение групп (анализ успеваемости по категориям предметов)**
 
 ```sql
@@ -170,6 +189,9 @@ JOIN subjects sub ON g.subject_id = sub.id
 GROUP BY grp.name, sub.category
 ORDER BY sub.category, avg_score DESC;
 ```
+
+<img width="1850" height="1362" alt="image" src="https://github.com/user-attachments/assets/81eaec7c-1f4d-4d82-ba23-5e4cb37a4f14" />
+
 
 # Б. Модификация данных 
 
